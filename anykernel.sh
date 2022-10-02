@@ -12,7 +12,7 @@ do.cleanup=1
 do.cleanuponabort=0
 device.name1=renoir
 device.name2=
-supported.versions=11,12
+supported.versions=11,12,13
 '; } # end properties
 
 # shell variables
