@@ -1,7 +1,7 @@
-# AnyKernel3 Ramdisk Mod Script
-# osm0sis @ xda-developers
+### AnyKernel3 Ramdisk Mod Script
+## osm0sis @ xda-developers
 
-## AnyKernel setup
+### AnyKernel setup
 # begin properties
 properties() { '
 kernel.string=Renoir Kernel
@@ -15,23 +15,22 @@ device.name2=
 supported.versions=12,13
 '; } # end properties
 
-# shell variables
+## boot shell variables
 block=boot;
 is_slot_device=1;
 ramdisk_compression=auto;
 patch_vbmeta_flag=auto;
 
-## AnyKernel methods (DO NOT CHANGE)
-# import patching functions/variables - see for reference
+# import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
 
 ## AnyKernel boot install
-dump_boot;
+dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
 
-write_boot;
+write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 ## end boot install
 
-# shell variables
+# vendor_boot shell variables
 block=vendor_boot;
 is_slot_device=1;
 ramdisk_compression=auto;
@@ -45,3 +44,4 @@ split_boot;
 
 flash_boot;
 ## end vendor_boot install
+
