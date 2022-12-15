@@ -19,7 +19,7 @@ supported.versions=12,13
 block=boot;
 is_slot_device=1;
 ramdisk_compression=auto;
-patch_vbmeta_flag=auto;
+patch_vbmeta_flag=1;
 
 # import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
@@ -34,7 +34,7 @@ write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_
 block=vendor_boot;
 is_slot_device=1;
 ramdisk_compression=auto;
-patch_vbmeta_flag=auto;
+patch_vbmeta_flag=1;
 
 # reset for vendor_boot patching
 reset_ak;
