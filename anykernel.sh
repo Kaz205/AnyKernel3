@@ -4,44 +4,34 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Renoir Kernel
+kernel.string=Morokoshi Kernel
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=renoir
+device.name1=pipa
 device.name2=
-supported.versions=12,13
+supported.versions=13
 '; } # end properties
 
-## boot shell variables
+# Install kernel image
 block=boot;
 is_slot_device=1;
-ramdisk_compression=auto;
-patch_vbmeta_flag=1;
 
 # import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
 
-## AnyKernel boot install
-dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+dump_boot;
+flash_boot;
 
-write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
-## end boot install
-
-# vendor_boot shell variables
+# Install dtb
 block=vendor_boot;
 is_slot_device=1;
-ramdisk_compression=auto;
-patch_vbmeta_flag=1;
 
-# reset for vendor_boot patching
 reset_ak;
-
-## AnyKernel vendor_boot install
 split_boot;
-
 flash_boot;
-## end vendor_boot install
 
+# Install dtbo
+flash_generic dtbo;
