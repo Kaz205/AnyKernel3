@@ -4,34 +4,28 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Morokoshi Kernel
+kernel.string=Morokoshi Kernel for the Pixel 8/Pro
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=pipa
-device.name2=
-supported.versions=13
+device.name1=husky
+device.name2=shiba
+supported.versions=14
+supported.patchlevels=2024-03 -
 '; } # end properties
 
-# Install kernel image
+# boot image installation
 block=boot;
 is_slot_device=1;
-
-# import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
-
-dump_boot;
-flash_boot;
-
-# Install dtb
-block=vendor_boot;
-is_slot_device=1;
-
-reset_ak;
 split_boot;
 flash_boot;
 
-# Install dtbo
-flash_generic dtbo;
+# vendor_kernel_boot installation (for dtb)
+block=vendor_kernel_boot;
+is_slot_device=1;
+reset_ak;
+split_boot;
+flash_boot;
